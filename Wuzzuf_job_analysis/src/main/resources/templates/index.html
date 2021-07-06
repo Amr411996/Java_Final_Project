@@ -1,0 +1,182 @@
+<!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+<!--@thymesVar id="post" type="your.package.Post"-->
+<!--@thymesVar id="title" type="String"-->
+<!--@thymesVar id="content" type="String"-->
+<!--*/-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Project</title>
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <meta name="description" content="">-->
+<!--    <meta name="author" content="">-->
+
+
+
+<!--    &lt;!&ndash; Bootstrap Core CSS &ndash;&gt;-->
+<!--    <link th:href="./static/css/bootstrap.min.css" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Custom Fonts &ndash;&gt;-->
+<!--    <link th:href="https://fonts.googleapis.com/css?family=Varela:100,200,300,400,500,600,700,800,900" rel="stylesheet">-->
+<!--    <link th:href="https://fonts.googleapis.com/css?family=Muli|Great+Vibes|Marmelad" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Font Awesome CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" th:href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+<!--    &lt;!&ndash; Theme CSS &ndash;&gt;-->
+<!--    <link th:href="./static/css/theme.css" rel="stylesheet">-->
+    <link rel="stylesheet" th:href="@{/css/theme.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<style th:inline="text">
+    body{
+        background: url{[[@{/images/1.jpg}]]}
+                    no-repeat center center fixed;
+    }
+</style>
+<body id="page-top" style="background-color:rgba(80,80,255,.1);text-align:center">
+
+<div>
+    <h1 align="center">Final Project </h1>
+    <h2 align="center">Java and UML Programming </h2>
+    <h2 align="left">•	Dataset used in project is Wuzzuf Jobs in Egypt at Kaggle. </h2>
+    <h3 align="left">By:</h3>
+    <h3 align="left" style="margin-left: 30px;">    •	Abdelrahman Sayed</h3>
+    <h3 align="left" style="margin-left: 30px;">    •	Amr Alaa</h3>
+    <h3 align="left" style="margin-left: 30px;">    •	Ahmed Mamdouh</h3>
+    <h3 align="left">Task1: Read data set and convert it to dataframe</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> Title </th>
+            <th> Company </th>
+            <th> Location </th>
+            <th> Type </th>
+            <th> Level </th>
+            <th> Years of Experience </th>
+            <th> Country </th>
+            <th> Skills </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="item : ${Task1}">
+            <td><span th:text="${item.get(0)}"> Title </span></td>
+            <td><span th:text="${item.get(1)}"> Company </span></td>
+            <td><span th:text="${item.get(2)}"> Location </span></td>
+            <td><span th:text="${item.get(3)}"> Type </span></td>
+            <td><span th:text="${item.get(4)}"> Level </span></td>
+            <td><span th:text="${item.get(5)}"> Years of Experience </span></td>
+            <td><span th:text="${item.get(6)}"> Country </span></td>
+            <td><span th:text="${item.get(7)}"> Skills </span></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <h3 align="left">Task2: Display structure, summary of the data and number of rows.</h3>
+    <tr th:if="${Task2.empty}">
+        <td colspan="2"> No Data Available </td>
+    </tr>
+<!--    <h3> Structure, Summary and number of rows</h3>-->
+
+    <tr th:each="item : ${Task2}">
+        <span th:text="${item}"> Info </span>
+        <h3> ====================================================================================</h3>
+    </tr>
+
+    <h3 align="left">Task3 & Task11: Data Cleaning and years of experience column factorization </h3>
+    <h4 align="left" style="margin-left: 30px;">•	Clean the data (null, duplications): we removed 3 duplicate
+    rows and replaced null by zero in years of experience column  </h4>
+<h4 align="left" style="margin-left: 30px;">•	Factorize the YearsExp feature and convert it to numbers in new column:
+    The New column is Minimum Years for Experience</h4>
+
+<!--    <tr th:each="item : ${Task3}">-->
+<!--        <span th:text="${item.get(0)}"> Info </span>-->
+<!--        <h3> ====================================================================================</h3>-->
+<!--    </tr>-->
+
+
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> Title </th>
+            <th> Company </th>
+            <th> Location </th>
+            <th> Type </th>
+            <th> Level </th>
+            <th> Years of Experience </th>
+            <th> Minimum Years of Experience </th>
+            <th> Country </th>
+            <th> Skills </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="item : ${Task3}">
+            <td><span th:text="${item.get(0)}"> Title </span></td>
+            <td><span th:text="${item.get(1)}"> Company </span></td>
+            <td><span th:text="${item.get(2)}"> Location </span></td>
+            <td><span th:text="${item.get(3)}"> Type </span></td>
+            <td><span th:text="${item.get(4)}"> Level </span></td>
+            <td><span th:text="${item.get(7)}"> Years of Experience </span></td>
+            <td><span th:text="${item.get(8)}"> Country </span></td>
+            <td><span th:text="${item.get(5)}"> Skills </span></td>
+            <td><span th:text="${item.get(6)}"> Minimum Years of Experience </span></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <h3 align="left">Task4:</h3>
+<h4 align="left" style="margin-left: 30px;">•	Count the jobs for each company and display that in order </h4>
+<h4 align="left" style="margin-left: 30px;">•	Ordered most demanding companies for jobs from highest to lowest</h4>
+
+    <tr th:each="item : ${Task4}">
+            <span th:text="${item}" style="background-color:yellow"> Info </span>
+            <h3> ====================================================================================</h3>
+        </tr>
+    <h3 align="left">Task5: Pie chart for the 5 most demanding companies for jobs</h3>
+    <img src="../static/images/Companies.png" width="1000" th:src="@{images/Companies.png}" align="center"/>
+
+
+    <h3 align="left">Task6: The  most popular job titles from highest to lowest </h3>
+    <tr th:each="item : ${Task6}">
+        <span th:text="${item}" style="background-color:yellow"> Info </span>
+        <h3> ====================================================================================</h3>
+    </tr>
+    <h3 align="left">Task7: Bar chart for the 10 most popular job titles</h3>
+    <img src="../static/images/jobs.png" width="1000" th:src="@{images/jobs.png}" align="center"/>
+
+    <h3 align="left">Task8: The most popular areas</h3>
+    <tr th:each="item : ${Task8}">
+        <span th:text="${item}" style="background-color:yellow"> Info </span>
+        <h3> ====================================================================================</h3>
+    </tr>
+    <h3 align="left">Task9: Bar chart for 10 most popular areas</h3>
+    <img src="../static/images/areas.png" width="1000" th:src="@{images/areas.png}"  align="center"/>
+
+<h3 align="left">Task10: Print skills one by one and how many each skill repeated in descending order</h3>
+<tr th:each="item : ${Task10}">
+    <span th:text="${item}" style="background-color:yellow; border-bottom:1px dashed"> Info </span>
+    <h3> ====================================================================================</h3>
+</tr>
+
+<h3 align="left">Task12: Apply Kmean for job titles and companies</h3>
+<tr th:each="item : ${Task12}">
+    <span th:text="${item}" style="background-color:yellow; border-bottom:1px dashed"> Info </span>
+    <h3> ====================================================================================</h3>
+</tr>
+
+
+
+</body>
+</html>
